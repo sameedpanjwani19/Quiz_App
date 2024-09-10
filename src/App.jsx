@@ -20,6 +20,13 @@ function QuizApp() {
   }, []);
 
 
+  useEffect(() => {
+    if (questions.length > 0) {
+      const currentQuestion = questions[currentQuestionIndex];
+      const options = [...currentQuestion.incorrectAnswers, currentQuestion.correctAnswer];
+      setShuffledOptions(shuffleOptions(options)); 
+    }
+  }, [currentQuestionIndex, questions]);
 
   function shuffleOptions(options) {
     for (let i = options.length - 1; i > 0; i--) {
